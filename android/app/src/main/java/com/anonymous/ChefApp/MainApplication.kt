@@ -1,4 +1,4 @@
-package com.chefapp
+package com.anonymous.ChefApp
 
 import android.app.Application
 import android.content.res.Configuration
