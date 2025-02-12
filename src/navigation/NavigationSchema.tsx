@@ -9,6 +9,8 @@ import ProfileScreen from "../presentation/view/screen/profile"
 import FavoriteScreen from "../presentation/view/screen/favorite"
 import ViewMoreScreen from "../presentation/view/screen/home/viewMore"
 import DetailsScreen from "../presentation/view/screen/home/details"
+import SplashScreen from "../presentation/view/screen/Auth/splash"
+import OnboardingScreen from "../presentation/view/screen/Auth/onboarding"
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
@@ -64,10 +66,20 @@ const MainTab = () => {
     )
 }
 
+const AuthStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="splash" component={SplashScreen} />
+            <Stack.Screen name="onboarding" component={OnboardingScreen} />
+        </Stack.Navigator>
+    )
+}
+
 //Put the Main Navigation here
 const NavigationController = () => {
     return (
         <NavigationContainer>
+            <AuthStack />
             <MainTab />
         </NavigationContainer>
     )
