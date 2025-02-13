@@ -67,10 +67,16 @@ const MainTab = () => {
 }
 
 const AuthStack = () => {
+
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
             <Stack.Screen name="splash" component={SplashScreen} />
             <Stack.Screen name="onboarding" component={OnboardingScreen} />
+            <Stack.Screen name="main_app" component={MainTab} />
         </Stack.Navigator>
     )
 }
@@ -80,7 +86,6 @@ const NavigationController = () => {
     return (
         <NavigationContainer>
             <AuthStack />
-            <MainTab />
         </NavigationContainer>
     )
 }
