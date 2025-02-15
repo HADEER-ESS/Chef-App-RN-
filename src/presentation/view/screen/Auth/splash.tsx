@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react'
 import { Image, StyleSheet, View, Text, Dimensions, ImageBackground } from 'react-native'
 import COLOR from '../../../../../constant'
+import AuthController from '../../../viewController/authcontroller/authController'
 
 const SplashScreen = () => {
-
+    const { handleNavigation } = AuthController()
+    useEffect(() => {
+        handleNavigation()
+    }, [])
     return (
         <View
             style={styles.backgroundView}
