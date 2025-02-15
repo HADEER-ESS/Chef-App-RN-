@@ -10,18 +10,27 @@
       "bundleIdentifier": "com.anonymous.ChefApp"
     },
     "plugins": [
-      "expo-sqlite",
-      {
-        "enableFTS": true,
+      [
+        "expo-sqlite",
+        {
+          "enableFTS": true,
           "useSQLCipher": true,
           "android": {
             "enableFTS": false,
             "useSQLCipher": false
           },
-          "ios" : {
-            "customBuildFlags": ["-DSQLITE_ENABLE_DBSTAT_VTAB=1 -DSQLITE_ENABLE_SNAPSHOT=1"]
+          "ios": {
+            "customBuildFlags": [
+              "-DSQLITE_ENABLE_DBSTAT_VTAB=1 -DSQLITE_ENABLE_SNAPSHOT=1"
+            ]
           }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "64d01498-6585-4f7a-8fe2-68d578d0e249"
       }
-    ]
+    }
   }
 }
