@@ -1,3 +1,7 @@
+export interface RecipesData {
+    recipes: RecipeItem[]
+}
+
 export interface RecipeItem {
     id: number;
     image: string;
