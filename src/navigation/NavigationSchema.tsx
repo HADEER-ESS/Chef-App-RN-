@@ -80,6 +80,7 @@ const MainTab = () => {
     return (
         <Tab.Navigator
             screenOptions={{
+                tabBarHideOnKeyboard: true,
                 headerShown: false,
                 tabBarStyle: {
                     backgroundColor: COLOR.primary_btn,
