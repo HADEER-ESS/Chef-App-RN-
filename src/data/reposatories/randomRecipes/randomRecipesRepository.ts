@@ -1,15 +1,16 @@
-import axios from "axios"
-import { RecipeItem } from "../../../domain/model/recipes/recipeItem"
+import { RecipeItemModule } from "../../../domain/model/recipes/recipeItemModule"
+import { RandomRecipeItemArrayMapper } from "../../../domain/model/recipes/recipeItemMpper"
+import ApiClient from "../../api/apiClient"
 
 export interface RandomRecipesRepositoryInterface {
-    fetchRandomRecipes(): Promise<RecipeItem[]>
+    fetchRandomRecipes(): Promise<RecipeItemModule[]>
 }
 
 export const RandomRecipesRepository: RandomRecipesRepositoryInterface = {
 
-    async fetchRandomRecipes(): Promise<RecipeItem[]> {
-        const response = await axios.get("random?number=7")
-        console.log("response from random recipes ", response.data[0])
-        return response.data
+    async fetchRandomRecipes(): Promise<RecipeItemModule[]> {
+        const response = await ApiClient.get("random?number=7")
+        let mapper = RandomRecipeItemArrayMapper(response as any)
+        return mapper
     }
 }

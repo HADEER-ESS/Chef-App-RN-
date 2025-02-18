@@ -1,14 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RecipeItem } from "../../../domain/model/recipes/recipeItem";
 import { FetchRecipes } from "../../../domain/useCase/recipeItem";
+import { RecipeItemModule } from "../../../domain/model/recipes/recipeItemModule";
 
 interface RandomRecipeState {
-    random_recipes: RecipeItem[],
+    random_recipes: RecipeItemModule[],
     isLoading: boolean,
     error: string | null
 }
 
-export const fetchRandomRecipes = createAsyncThunk<RecipeItem[]>("fetch/randomRecipes", async () => {
+export const fetchRandomRecipes = createAsyncThunk<RecipeItemModule[]>("fetch/randomRecipes", async () => {
     return await FetchRecipes()
 })
 
