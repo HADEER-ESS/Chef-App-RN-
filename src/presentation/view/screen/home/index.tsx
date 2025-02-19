@@ -1,13 +1,20 @@
-import React from 'react'
-import { ScrollView, StyleSheet, Text } from 'react-native'
+import React, { useRef } from 'react'
+import { Animated, FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
 import COLOR from '../../../../../constant'
 import SearchComponent from '../../components/SearchComponent'
 import HomeController from '../../../viewController/appController/homeController'
+import CardComponent from '../../components/CardComponent'
+import { RecipeItemModule } from '../../../../domain/model/recipes/recipeItemModule'
+import CategoryCard from '../../components/CategoryCard'
+
+
+
+const AnimatiedFlatList = Animated.createAnimatedComponent(FlatList)
 
 const HomeScreen = () => {
-    const { data, random_recipes, isLoading, error } = HomeController()
+    const { data, random_recipes, isLoading, error, categories } = HomeController()
+    const scrollX = useRef(new Animated.Value(0)).current
 
-    console.log("income data is ", random_recipes)
     return (
         <ScrollView style={styles.screenView}>
             <Text>Hello</Text>
@@ -15,6 +22,33 @@ const HomeScreen = () => {
                 <Text style={[styles.MainTextStyle, { color: COLOR.primary_btn }]}> Recipe!</Text>
             </Text>
             <SearchComponent />
+            <FlatList
+                horizontal={true}
+                data={categories}
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(item) => `${item}`}
+                renderItem={({ item }) => <CategoryCard name={item} onclick={() => { }} isFocuse={false} />}
+            />
+            {/* Title and view All navigator */}
+            <View style={styles.randomRecipesContainer}>
+                <Text style={styles.randomRecipeTitle}>Top Recipes</Text>
+                <Text style={styles.randomRecipeViewAll}>View All</Text>
+            </View>
+            <AnimatiedFlatList
+                data={random_recipes}
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(item, index) => `${item}-${index}`}
+                contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 27 }}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+                    { useNativeDriver: true }
+                )}
+                scrollEventThrottle={16}
+                renderItem={({ item, index }) => <CardComponent index={index} data={item as RecipeItemModule} scrollx={scrollX} />}
+            />
         </ScrollView>
     )
 }
@@ -38,6 +72,22 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         width: 200,
-        flexShrink: 2
+        flexShrink: 2,
+        marginBottom: 24
+    },
+    randomRecipesContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    randomRecipeTitle: {
+        color: COLOR.black,
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    randomRecipeViewAll: {
+        color: COLOR.gray,
+        fontSize: 13,
+        fontWeight: 'regular'
     }
 })
