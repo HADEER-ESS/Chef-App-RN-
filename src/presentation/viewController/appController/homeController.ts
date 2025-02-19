@@ -3,6 +3,10 @@ import { AppDispatch, RootState } from "../../../store/store"
 import { getRecipeByCategory } from "../../viewModel/RandomByCategory"
 import { useEffect, useState } from "react"
 import { fetchRandomRecipes } from "../../viewModel/randomRecipes/randomSlice"
+import { Dimensions } from "react-native"
+
+const { width } = Dimensions.get('window')
+export const ITEM_WIDTH = width * 0.8
 
 const HomeController = () => {
 
