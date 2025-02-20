@@ -12,7 +12,7 @@ import CategoryCard from '../../components/CategoryCard'
 const AnimatiedFlatList = Animated.createAnimatedComponent(FlatList)
 
 const HomeScreen = () => {
-    const { data, random_recipes, isLoading, error, categories } = HomeController()
+    const { renderData, isLoading, error, categories } = HomeController()
     const scrollX = useRef(new Animated.Value(0)).current
 
     return (
@@ -36,7 +36,7 @@ const HomeScreen = () => {
                 <Text style={styles.randomRecipeViewAll}>View All</Text>
             </View>
             <AnimatiedFlatList
-                data={random_recipes}
+                data={renderData}
                 horizontal
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
