@@ -15,6 +15,8 @@ import { Octicons, Foundation, AntDesign, Ionicons } from '@expo/vector-icons';
 import COLOR from "../../constant"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Pressable, StyleSheet, TouchableOpacity, View } from "react-native"
+import { QueryClientProvider } from "react-query"
+import queryClient from "../store/store"
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
@@ -171,7 +173,9 @@ const AuthStack = () => {
 const NavigationController = () => {
     return (
         <NavigationContainer>
-            <AuthStack />
+            <QueryClientProvider client={queryClient}>
+                <AuthStack />
+            </QueryClientProvider>
         </NavigationContainer>
     )
 }
