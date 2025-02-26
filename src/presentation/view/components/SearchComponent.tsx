@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, TextInput, View } from 'react-native'
-import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+import { Image, StyleSheet, TextInput, View } from 'react-native'
+import { AntDesign } from '@expo/vector-icons';
 import COLOR from '../../../../constant'
 
 const SearchComponent = () => {
@@ -16,7 +16,10 @@ const SearchComponent = () => {
             />
             {/* ICON */}
             <View style={styles.iconsContainer}>
-                <MaterialCommunityIcons style={{ alignSelf: 'center' }} name='settings-helper' size={24} color={COLOR.white} />
+                <Image
+                    source={require("../../../../assets/filter_icv.png")}
+                    style={{ alignSelf: 'center' }}
+                />
             </View>
         </View>
     )
