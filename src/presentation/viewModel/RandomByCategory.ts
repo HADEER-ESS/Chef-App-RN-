@@ -1,7 +1,7 @@
 // import { createAsyncThunk, createSlice, SerializedError } from "@reduxjs/toolkit";
 // import { RecipeByCategory } from "../../domain/model/category/categoryItem";
-import { GetRandomRecipeByCategoryUseCase } from "../../domain/useCase/randomCategory/RandomCategoryUseCase";
 import { useQuery } from "react-query";
+import GetRandomRecipeDataUseCase from "../../domain/useCase/randomCategory/RandomCategoryUseCase";
 
 
 
@@ -9,7 +9,7 @@ import { useQuery } from "react-query";
 //     return await GetRandomRecipeByCategoryUseCase(name)
 // })
 
-export const useRecipeByCategory = (category: string) => useQuery(["categoryRecipes", category], () => GetRandomRecipeByCategoryUseCase(category))
+export const useRecipeByCategory = (category: string) => useQuery(["categoryRecipes", category], () => GetRandomRecipeDataUseCase.randomReciptByCategory(category))
 
 
 // interface RandomCategoryState {

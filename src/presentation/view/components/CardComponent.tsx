@@ -1,5 +1,5 @@
 import React from 'react'
-import { Animated, ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { Animated, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import COLOR from '../../../../constant';
 import { RecipeItemModule } from '../../../domain/model/recipes/recipeItemModule';
@@ -9,9 +9,11 @@ type props = {
     data: RecipeItemModule,
     scrollx: Animated.Value,
     index: number,
+    isLoved: boolean,
+    addFav: (data: RecipeItemModule) => void
 }
 
-const CardComponent = ({ data, scrollx, index }: props) => {
+const CardComponent = ({ data, scrollx, index, isLoved, addFav }: props) => {
     const inputRange = [
         (index - 1) * ITEM_WIDTH,
         index * ITEM_WIDTH,
@@ -25,19 +27,24 @@ const CardComponent = ({ data, scrollx, index }: props) => {
     })
 
     return (
-        <Animated.View style={[styles.viewContainerCard, { transform: [{ scale }] }]}>
-            <ImageBackground
-                style={styles.backgroundImgaeStyle}
-                source={{ uri: data.image }}
-                imageStyle={{ borderRadius: 32 }}
-            >
-                <View style={styles.BlureViewContainer}>
-                    <Text style={styles.textStyle}>{data.title}</Text>
-                    <View style={styles.iconContainerStyle}>
-                        <MaterialCommunityIcons name='heart' size={24} color={COLOR.white} />
+        <Animated.View
+            style={[styles.viewContainerCard, { transform: [{ scale }] }]}
+        >
+            <TouchableOpacity onPress={() => addFav(data)}>
+                <ImageBackground
+                    style={styles.backgroundImgaeStyle}
+                    source={{ uri: data.image }}
+                    imageStyle={{ borderRadius: 32 }}
+                >
+                    <View style={styles.BlureViewContainer}>
+                        <Text style={styles.textStyle}>{data.title}</Text>
+                        <View style={[styles.iconContainerStyle, { backgroundColor: isLoved ? COLOR.white : COLOR.primary_btn }]}>
+                            <MaterialCommunityIcons name='heart' size={24} color={isLoved ? COLOR.primary_btn : COLOR.white} />
+                        </View>
                     </View>
-                </View>
-            </ImageBackground>
+                </ImageBackground>
+            </TouchableOpacity>
+
         </Animated.View>
     )
 }

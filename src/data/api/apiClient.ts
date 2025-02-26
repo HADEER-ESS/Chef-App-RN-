@@ -6,22 +6,20 @@ import { Alert } from "react-native";
 const ApiClient = axios.create({
     baseURL: "https://api.spoonacular.com/recipes/",
     timeout: 50000,
-    headers: {
-        "x-api-key": "e3967d1eb9be4fc0a58bbedecd874d62"
-    }
 })
 
 //API Interceptor 
 
-// ApiClient.interceptors.request.use(
-//     (config) => {
-//         console.log("request ", config)
-//         return config
-//     },
-//     (error) => {
-//         return Promise.reject(error)
-//     }
-// )
+ApiClient.interceptors.request.use(
+    (config) => {
+        const token = "e3967d1eb9be4fc0a58bbedecd874d62"
+        config.headers['x-api-key'] = token
+        return config
+    },
+    (error) => {
+        return Promise.reject(error)
+    }
+)
 
 ApiClient.interceptors.response.use(
     (response) => {
