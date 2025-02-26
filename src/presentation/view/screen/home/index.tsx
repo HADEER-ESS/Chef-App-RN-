@@ -12,7 +12,7 @@ import CategoryCard from '../../components/CategoryCard'
 const AnimatiedFlatList = Animated.createAnimatedComponent(FlatList)
 
 const HomeScreen = () => {
-    const { renderData, isLoading, error, categories } = HomeController()
+    const { renderData, isLoading, error, categories, checkIsFavorite } = HomeController()
     const scrollX = useRef(new Animated.Value(0)).current
 
     return (
@@ -47,7 +47,7 @@ const HomeScreen = () => {
                     { useNativeDriver: true }
                 )}
                 scrollEventThrottle={16}
-                renderItem={({ item, index }) => <CardComponent index={index} data={item as RecipeItemModule} scrollx={scrollX} />}
+                renderItem={({ item, index }) => <CardComponent addFav={checkIsFavorite} isLoved={false} index={index} data={item as RecipeItemModule} scrollx={scrollX} />}
             />
         </ScrollView>
     )
