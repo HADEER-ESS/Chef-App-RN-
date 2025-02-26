@@ -1,4 +1,5 @@
-import { FetchRecipes } from "../../../domain/useCase/recipeItem";
+import GetRandomRecipeDataUseCase from "../../../domain/useCase/randomCategory/RandomCategoryUseCase";
+// import { FetchRecipes } from "../../../domain/useCase/recipeItem";
 import { useQuery } from "react-query";
 
 // interface RandomRecipeState {
@@ -11,7 +12,7 @@ import { useQuery } from "react-query";
 //     return await FetchRecipes()
 // })
 
-export const useRandomRecipes = () => useQuery("randomRecipes", FetchRecipes)
+export const useRandomRecipes = () => useQuery("randomRecipes", GetRandomRecipeDataUseCase.randomRecipt)
 
 // const initialState: RandomRecipeState = {
 //     random_recipes: [],
