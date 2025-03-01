@@ -11,9 +11,8 @@ export interface RandomRecipeWithCategoryRepositoryInterface {
 export const fetchRandomRecipeByCategory: RandomRecipeWithCategoryRepositoryInterface = {
 
     async fetchRecipeByCategory(category: string): Promise<RecipeByCategory[]> {
-        console.log("called for category")
         const response = await ApiClient.get(`findByIngredients?ingredients=${category}&number=5`)
-        let mapper = CategoryMapperArray(response.data)
+        let mapper = CategoryMapperArray(response)
         console.log("response is ", mapper)
         return mapper
     }

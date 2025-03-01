@@ -12,7 +12,7 @@ import CategoryCard from '../../components/CategoryCard'
 const AnimatiedFlatList = Animated.createAnimatedComponent(FlatList)
 
 const HomeScreen = () => {
-    const { renderData, isLoading, error, categories, checkIsFavorite } = HomeController()
+    const { selectedCategory, favoritesDish, renderData, handleCategoryChange, categories, checkIsFavorite } = HomeController()
     const scrollX = useRef(new Animated.Value(0)).current
 
     return (
@@ -28,7 +28,7 @@ const HomeScreen = () => {
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={(item) => `${item}`}
-                renderItem={({ item }) => <CategoryCard name={item} onclick={() => { }} isFocuse={false} />}
+                renderItem={({ item }) => <CategoryCard name={item} onclick={() => handleCategoryChange(item)} selected={selectedCategory} />}
             />
             {/* Title and view All navigator */}
             <View style={styles.randomRecipesContainer}>
@@ -47,7 +47,7 @@ const HomeScreen = () => {
                     { useNativeDriver: true }
                 )}
                 scrollEventThrottle={16}
-                renderItem={({ item, index }) => <CardComponent addFav={checkIsFavorite} isLoved={false} index={index} data={item as RecipeItemModule} scrollx={scrollX} />}
+                renderItem={({ item, index }) => <CardComponent addFav={checkIsFavorite} isLoved={favoritesDish} index={index} data={item as RecipeItemModule} scrollx={scrollX} />}
             />
         </ScrollView>
     )
