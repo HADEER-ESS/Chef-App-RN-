@@ -18,6 +18,7 @@ const HomeController = () => {
     // const { data, isLoading, error } = useSelector((state: RootState) => state.randome_by_category)
     // const { random_recipes } = useSelector((state: RootState) => state.random_recipes)
     const [renderData, setRenderData] = useState<any[]>([])
+    const [favoritesDish, setFavoriteDish] = useState<number[]>([])
     const [selectedCategory, setSelectedCategory] = useState<string>("All")
 
     const categories = ["All", "Meat", "Vegetables", "Fruit", "Chicken", "Soup", "Dessert"]
@@ -74,15 +75,21 @@ const HomeController = () => {
             const result = await db.getFirstAsync(
                 `SELECT * FROM favorite WHERE rec_id = ?`, [data.id]
             );
-            console.log("recipe is exist in favorite ", result)
             if (result) {
                 console.log("Recipe does not exist, adding...");
+                let arr = [...favoritesDish]
+                let index = arr.indexOf(data.id)
+                if (index !== -1) {
+                    arr.splice(index, 1)
+                }
+                setFavoriteDish(arr)
                 await db.runAsync(
                     `DELETE FROM favorite WHERE rec_id = ${data.id}`
                 )
             }
             else {
                 addToVaforiteRecipe(data)
+                setFavoriteDish([...favoritesDish, data.id])
             }
         } catch (error) {
             console.log("caaaaaaaaaaaaaaaaaaaaaaaaaaaaatch ", error)
@@ -96,6 +103,8 @@ const HomeController = () => {
         renderData,
         isLoading,
         error,
+        favoritesDish,
+        selectedCategory,
         handleCategoryChange,
         filterRecipeByCategory,
         checkIsFavorite

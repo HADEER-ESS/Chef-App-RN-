@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { Animated, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import COLOR from '../../../../constant';
@@ -9,7 +9,7 @@ type props = {
     data: RecipeItemModule,
     scrollx: Animated.Value,
     index: number,
-    isLoved: boolean,
+    isLoved: number[],
     addFav: (data: RecipeItemModule) => void
 }
 
@@ -19,13 +19,12 @@ const CardComponent = ({ data, scrollx, index, isLoved, addFav }: props) => {
         index * ITEM_WIDTH,
         (index + 1) * ITEM_WIDTH
     ]
-
     const scale = scrollx.interpolate({
         inputRange,
         outputRange: [0.8, 1, 0.8],
         extrapolate: 'clamp'
     })
-
+    // useLayoutEffect(()=>{},[])
     return (
         <Animated.View
             style={[styles.viewContainerCard, { transform: [{ scale }] }]}
@@ -38,8 +37,8 @@ const CardComponent = ({ data, scrollx, index, isLoved, addFav }: props) => {
                 >
                     <View style={styles.BlureViewContainer}>
                         <Text style={styles.textStyle}>{data.title}</Text>
-                        <View style={[styles.iconContainerStyle, { backgroundColor: isLoved ? COLOR.white : COLOR.primary_btn }]}>
-                            <MaterialCommunityIcons name='heart' size={24} color={isLoved ? COLOR.primary_btn : COLOR.white} />
+                        <View style={[styles.iconContainerStyle, { backgroundColor: isLoved.includes(data.id) ? COLOR.white : COLOR.primary_btn }]}>
+                            <MaterialCommunityIcons name='heart' size={24} color={isLoved.includes(data.id) ? COLOR.primary_btn : COLOR.white} />
                         </View>
                     </View>
                 </ImageBackground>
