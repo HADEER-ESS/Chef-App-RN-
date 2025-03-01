@@ -1,7 +1,7 @@
 // import { createAsyncThunk, createSlice, SerializedError } from "@reduxjs/toolkit";
 // import { RecipeByCategory } from "../../domain/model/category/categoryItem";
 import { useQuery } from "react-query";
-import GetRandomRecipeDataUseCase from "../../domain/useCase/randomCategory/RandomCategoryUseCase";
+import GetRandomRecipeDataUseCase from "../../../domain/useCase/randomCategory/RandomCategoryUseCase";
 
 
 

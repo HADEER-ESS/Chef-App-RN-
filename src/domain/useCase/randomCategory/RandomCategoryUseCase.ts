@@ -1,5 +1,5 @@
-import { fetchRandomRecipeByCategory } from "../../../data/reposatories/RandomRecipeBasedOnCategoryRepository"
-import { RandomRecipesRepository } from "../../../data/reposatories/randomRecipes/randomRecipesRepository"
+import { fetchRandomRecipeByCategory } from "../../../data/reposatories/randomRecipesByNumber/RandomRecipeBasedOnCategoryRepository"
+import { RandomRecipesRepository } from "../../../data/reposatories/randomRecipesByNumber/randomRecipesRepository"
 
 
 

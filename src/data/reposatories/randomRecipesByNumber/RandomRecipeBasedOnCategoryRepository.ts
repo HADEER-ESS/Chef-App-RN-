@@ -1,6 +1,6 @@
-import { RecipeByCategory } from "../../domain/model/category/categoryItem";
-import { CategoryMapperArray } from "../../domain/model/category/CategoryResponseMapper";
-import ApiClient from "../api/apiClient";
+import { RecipeByCategory } from "../../../domain/model/category/categoryItem";
+import { CategoryMapperArray } from "../../../domain/model/category/CategoryResponseMapper";
+import ApiClient from "../../api/apiClient";
 
 
 export interface RandomRecipeWithCategoryRepositoryInterface {
