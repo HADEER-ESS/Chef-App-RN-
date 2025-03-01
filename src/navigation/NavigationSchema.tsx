@@ -17,7 +17,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Pressable, StyleSheet, TouchableOpacity, View } from "react-native"
 import { QueryClientProvider } from "react-query"
 import queryClient from "../store/store"
-const Stack = createNativeStackNavigator()
+import { RootStackParamList } from "./NavigationType"
+const Stack = createNativeStackNavigator<RootStackParamList>()
 const Tab = createBottomTabNavigator()
 
 
