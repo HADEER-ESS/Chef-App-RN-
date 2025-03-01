@@ -6,6 +6,8 @@ import HomeController from '../../../viewController/appController/homeController
 import CardComponent from '../../components/CardComponent'
 import { RecipeItemModule } from '../../../../domain/model/recipes/recipeItemModule'
 import CategoryCard from '../../components/CategoryCard'
+import { useNavigation } from '@react-navigation/native'
+import { MoreScreenNavigationProp } from '../../../../navigation/NavigationType'
 
 
 
@@ -14,6 +16,7 @@ const AnimatiedFlatList = Animated.createAnimatedComponent(FlatList)
 const HomeScreen = () => {
     const { selectedCategory, favoritesDish, renderData, handleCategoryChange, categories, checkIsFavorite } = HomeController()
     const scrollX = useRef(new Animated.Value(0)).current
+    const navigation = useNavigation<MoreScreenNavigationProp>()
 
     return (
         <ScrollView style={styles.screenView}>
@@ -33,7 +36,12 @@ const HomeScreen = () => {
             {/* Title and view All navigator */}
             <View style={styles.randomRecipesContainer}>
                 <Text style={styles.randomRecipeTitle}>Top Recipes</Text>
-                <Text style={styles.randomRecipeViewAll}>View All</Text>
+                <Text
+                    style={styles.randomRecipeViewAll}
+                    onPress={() => navigation.navigate("more", { category: selectedCategory })}
+                >
+                    View All
+                </Text>
             </View>
             <AnimatiedFlatList
                 data={renderData}
