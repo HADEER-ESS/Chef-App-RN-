@@ -10,7 +10,6 @@ type props = {
 }
 
 const CategoryCard = ({ name, selected, onclick }: props) => {
-    console.log("selected category now is ", selected);
 
     return (
         <View style={[styles.cardComponent, { backgroundColor: selected === name ? COLOR.primary_btn : COLOR.white }]}>
