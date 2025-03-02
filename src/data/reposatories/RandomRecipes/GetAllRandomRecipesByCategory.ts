@@ -13,7 +13,7 @@ interface GetAllRandomRecipesByCategoryRepo {
 export const GetAllRandomRecipesByCategoryRepoImpl: GetAllRandomRecipesByCategoryRepo = {
 
     async fetchAllRecipesByCategory(name: string): Promise<RecipeItemModule[]> {
-        const response = await ApiClient.get("findByIngredients?ingredients=${category}")
+        const response = await ApiClient.get(`findByIngredients?ingredients=${name}`)
         let mapper = CategoryMapperArray(response)
         return mapper
     }
