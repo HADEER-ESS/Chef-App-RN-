@@ -5,9 +5,9 @@ import { useEffect, useState } from "react"
 // import { fetchRandomRecipes } from "../../viewModel/randomRecipes/randomSlice"
 import { Dimensions } from "react-native"
 import { useRandomRecipes } from "../../viewModel/randomRecipes/randomSlice"
-import { useRecipeByCategory } from "../../viewModel/RandomByCategory"
 import { RecipeItemModule } from "../../../domain/model/recipes/recipeItemModule"
 import getDb from "../../../util/sqlite"
+import { useRecipeByCategory } from "../../viewModel/randomRecipes/RandomByCategory"
 
 const { width } = Dimensions.get('window')
 export const ITEM_WIDTH = width * 0.8
