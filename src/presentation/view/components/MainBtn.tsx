@@ -4,13 +4,15 @@ import COLOR from '../../../../constant'
 
 type props = {
     onpress: () => void,
-    text?: string
+    text: string,
+    btn_backGround: string,
+    btn_text: string
 }
 
-const MainBtn = ({ onpress }: props) => {
+const MainBtn = ({ onpress, text, btn_backGround, btn_text }: props) => {
     return (
-        <TouchableOpacity onPress={onpress} style={styles.btn_container}>
-            <Text style={styles.btn_text}>Get Started</Text>
+        <TouchableOpacity onPress={onpress} style={[styles.btn_container, { backgroundColor: btn_backGround }]}>
+            <Text style={[styles.btn_text, { color: btn_text }]}>{text}</Text>
         </TouchableOpacity>
     )
 }
@@ -20,11 +22,9 @@ export default MainBtn
 const styles = StyleSheet.create({
     btn_container: {
         borderRadius: 50,
-        backgroundColor: COLOR.primary_btn,
         alignSelf: 'center'
     },
     btn_text: {
-        color: COLOR.white,
         fontSize: 18,
         fontWeight: 'medium',
         textAlign: 'center',

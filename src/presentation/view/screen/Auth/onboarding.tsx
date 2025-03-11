@@ -25,7 +25,12 @@ const OnboardingScreen = () => {
                 us!
             </Text>
             <View style={{ marginTop: "30%" }}>
-                <MainBtn onpress={startBtnHandling} />
+                <MainBtn
+                    onpress={startBtnHandling}
+                    text='Get Started'
+                    btn_backGround={COLOR.primary_btn}
+                    btn_text={COLOR.white}
+                />
             </View>
 
         </View>
