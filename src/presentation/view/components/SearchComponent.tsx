@@ -3,9 +3,12 @@ import { Image, StyleSheet, TextInput, View } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import COLOR from '../../../../constant'
 
-const SearchComponent = () => {
+type props = {
+    from: string
+}
+const SearchComponent = ({ from }: props) => {
     return (
-        <View style={styles.editTextContainer}>
+        <View style={[styles.editTextContainer, { justifyContent: from === "home" ? "flex-start" : "space-between" }]}>
             {/* ICON */}
             <AntDesign name='search1' size={24} color={COLOR.gray} />
             {/* Edit text */}
@@ -15,12 +18,16 @@ const SearchComponent = () => {
                 placeholderTextColor={COLOR.gray}
             />
             {/* ICON */}
-            <View style={styles.iconsContainer}>
-                <Image
-                    source={require("../../../../assets/filter_icv.png")}
-                    style={{ alignSelf: 'center' }}
-                />
-            </View>
+            {
+                from !== "home" &&
+                <View style={styles.iconsContainer}>
+                    <Image
+                        source={require("../../../../assets/filter_icv.png")}
+                        style={{ alignSelf: 'center' }}
+                    />
+                </View>
+            }
+
         </View>
     )
 }
@@ -30,7 +37,6 @@ export default SearchComponent
 const styles = StyleSheet.create({
     editTextContainer: {
         flexDirection: 'row',
-        justifyContent: "space-between",
         alignItems: 'center',
         backgroundColor: COLOR.secondry_btn,
         borderRadius: 10,
