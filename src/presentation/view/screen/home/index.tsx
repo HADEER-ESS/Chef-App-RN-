@@ -24,7 +24,7 @@ const HomeScreen = () => {
             <Text style={styles.MainTextStyle}>Discover Your Favorite
                 <Text style={[styles.MainTextStyle, { color: COLOR.primary_btn }]}> Recipe!</Text>
             </Text>
-            <SearchComponent />
+            <SearchComponent from='home' />
             <FlatList
                 horizontal={true}
                 data={categories}
